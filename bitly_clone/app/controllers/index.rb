@@ -1,17 +1,12 @@
 get '/' do
-  # let user create new short URL, display a list of shortened URLs
-
-  @urls = Url.all
+  @urls = Url.all.order('id ASC')
   erb :index
 end
 
-# e.g., /q6bda
 get '/:extension' do
-  url_object = Url.where(:extension => params[:extension])
-  # @count = url_object.first.click_count.to_i
-  # @count += 1
-  # @count.save
-  @redirect_url = url_object.first.name
+  url = Url.find_by_extension(params[:extension])
+  url.increment_click_count
+  @redirect_url = url.name
   redirect to "#{@redirect_url}" 
 end
 

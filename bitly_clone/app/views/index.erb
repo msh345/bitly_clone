@@ -16,7 +16,7 @@
       <% @urls.each do |url|%> <br>
        <%= url.name%><br> 
       <a href="<%= "http://127.0.0.1:9393/#{url.extension}" %>"><%= "http://bit.ly/#{url.extension}"%></a><br>
-      number of clicks <%=url.click_count%>
+      number of clicks <%=url.click_count%><br>
       <% end %>
     <% end %>
   </ul>

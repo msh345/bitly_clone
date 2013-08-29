@@ -1,5 +1,8 @@
 class Url < ActiveRecord::Base
-  # Remember to create a migration!
-  # before_save   UrlShortener.new
+  def increment_click_count
+  	count = self.click_count
+  	count += 1
+  	self.update(click_count: count)
+  end
 
 end
