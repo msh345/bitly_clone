@@ -1,7 +1,7 @@
 <div class="container">
 
   <h1>Welcome to Bitly</h1>
-
+  <%=@error_message ? @error_message : nil%><br>
 
   <form action="/urls" method="POST">
     Shorten a URL here!

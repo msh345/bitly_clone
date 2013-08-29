@@ -10,12 +10,14 @@ get '/:extension' do
   redirect to "#{@redirect_url}" 
 end
 
+
 post '/urls' do
-  # create a new Url
   user_url = params[:long_url]
   extension = (0...5).map{ ('a'..'z').to_a[rand(26)] }.join
-  Url.create(:name => user_url, :extension => extension)
-  redirect to "/"
+  short_url = Url.create(:name => user_url, :extension => extension)
+  @error_message = short_url.errors[:name].join('')
+  @urls = Url.all.order('id ASC')
+  erb :index
 end
 
 
